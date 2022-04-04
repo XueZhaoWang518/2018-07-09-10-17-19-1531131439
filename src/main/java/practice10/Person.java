@@ -1,5 +1,7 @@
 package practice10;
 
+import com.google.common.base.Objects;
+
 public class Person {
     public String name;
     public int age;
@@ -25,6 +27,19 @@ public class Person {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age && id == person.id && Objects.equal(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name, age, id);
     }
 
     public String introduce(){
